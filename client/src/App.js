@@ -14,7 +14,11 @@ function App() {
     <ApolloProvider client={client}>
       <div className="container">
         <header className="App-header">
-          <img src={logo} style={{ display: 'block', margin: 'auto' }} />
+          <img
+            src={logo}
+            alt="logo"
+            style={{ display: 'block', margin: 'auto' }}
+          />
         </header>
         <Launches />
       </div>
