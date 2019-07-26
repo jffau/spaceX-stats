@@ -31,11 +31,59 @@ export class Launch extends Component {
           {({ loading, error, data }) => {
             if (loading) return <h4>Loading...</h4>;
             if (error) console.log(error);
-            return <h1>{data.launch.flight_number}</h1>;
+            const {
+              mission_name,
+              flight_number,
+              launch_year,
+              launch_success,
+              rocket: { rocket_id, rocket_name, rocket_type }
+            } = data.launch;
+            return (
+              <div>
+                <h1 className="display-4 my-5">
+                  <span className="text-dark">Mission: </span>
+                  {data.launch.mission_name}
+                </h1>
+                <h4 className="mb-3">Launch Details</h4>
+                <ul className="list-group">
+                  <li className="list-group-item">
+                    Flight Number: {flight_number}
+                  </li>
+                  <li className="list-group-item">
+                    Launch Year: {launch_year}
+                  </li>
+                  <li className="list-group-item">
+                    Launch Successful:{' '}
+                    <span
+                      className={classNames({
+                        'text-success': launch_success === true,
+                        'text-danger': launch_success === false,
+                        'text-secondary': launch_success === null
+                      })}
+                    >
+                      {launch_success ? 'Yes' : null}
+                      {launch_success === false ? 'No' : null}
+                      {launch_success === null ? 'Unknown' : null}
+                    </span>
+                  </li>
+                </ul>
+
+                <h4 className="my-3">Rocket Details</h4>
+                <ul className="list-group">
+                  <li className="list-group-item">RocketID: {rocket_id}</li>
+                  <li className="list-group-item">
+                    Rocket Name: {rocket_name}
+                  </li>
+                  <li className="list-group-item">
+                    Rocket Type: {rocket_type}
+                  </li>
+                </ul>
+              </div>
+            );
           }}
         </Query>
-
-        <Link to="/" className="btn btn-primary">
+        <hr />
+        <Link to="/" className="btn btn-primary my-5">
           Return Home
         </Link>
       </>
