@@ -42,7 +42,7 @@ export class Launch extends Component {
               <div>
                 <h1 className="display-4 my-5">
                   <span className="text-dark">Mission: </span>
-                  {data.launch.mission_name}
+                  {mission_name}
                 </h1>
                 <h4 className="mb-3">Launch Details</h4>
                 <ul className="list-group">
