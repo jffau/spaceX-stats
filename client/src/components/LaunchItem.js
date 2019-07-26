@@ -10,24 +10,31 @@ export default function LaunchItem({
     <div className="card card-body mb-3">
       <div className="row">
         <div className="col-md-9">
-          <h4>
-            Mission Name:{' '}
-            <span
-              className={classNames({
-                'text-success': launch_success,
-                'text-danger': launch_success === false,
-                'text-secondary': launch_success === null
-              })}
-            >
-              {mission_name}
-            </span>
-          </h4>
+          <Link to={`/launch/${flight_number}`} style={{ color: 'inherit' }}>
+            <h4>
+              Mission:{' '}
+              <span
+                className={classNames({
+                  'text-success': launch_success,
+                  'text-danger': launch_success === false,
+                  'text-secondary': launch_success === null
+                })}
+              >
+                {mission_name}
+              </span>
+            </h4>
+          </Link>
           <p>
             Date: <Moment format="YYYY-MM-DD HH:mm">{launch_date_local}</Moment>
           </p>
         </div>
         <div className="col-md-3">
-          <button className="btn btn-secondary my-4">Launch Details</button>
+          <Link
+            to={`/launch/${flight_number}`}
+            className="btn btn-secondary my-4"
+          >
+            Launch Details
+          </Link>
         </div>
       </div>
     </div>
