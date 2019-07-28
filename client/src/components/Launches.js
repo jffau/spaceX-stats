@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 
 import MissionKey from './MissionKey';
 import LaunchItem from './LaunchItem';
+import NextLaunch from './NextLaunch';
 const LAUNCHES_QUERY = gql`
   query LaunchesQuery {
     launches {
@@ -29,9 +30,9 @@ export class Launches extends Component {
             if (error) {
               console.log(error);
             }
-            console.log(data);
             return (
               <>
+                <NextLaunch launches={data.launches} />
                 {data.launches.map(launch => (
                   <LaunchItem key={launch.flight_number} launch={launch} />
                 ))}
