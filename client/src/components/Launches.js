@@ -20,8 +20,6 @@ export class Launches extends Component {
   render() {
     return (
       <>
-        <h1 className="display-4 my-3"> Launch Stats</h1>
-        <MissionKey />
         <Query query={LAUNCHES_QUERY}>
           {({ data, loading, error }) => {
             if (loading) {
@@ -33,6 +31,8 @@ export class Launches extends Component {
             return (
               <>
                 <NextLaunch launches={data.launches} />
+                <h1 className="display-4 my-3"> Launch Stats</h1>
+                <MissionKey />
                 {data.launches.map(launch => (
                   <LaunchItem key={launch.flight_number} launch={launch} />
                 ))}

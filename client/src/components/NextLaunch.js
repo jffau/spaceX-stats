@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import Countdown from 'react-countdown-now';
-import { CLIENT_RENEG_WINDOW } from 'tls';
+import LaunchItem from './LaunchItem';
 
 const Launched = () => <span> 🚨 Mission Launched! 🚀🚨 </span>;
 
-const renderer = ({ days, hours, minutes, seconds, completed, children }) => {
+const renderer = ({ days, hours, minutes, seconds, completed }) => {
   if (completed) {
     return <Launched />;
   } else {
     return (
-      <div>
-        <h4> Upcoming Mission: </h4>
-        {children}
-        <span>
-          {days} Days : {hours} Hours:{minutes} Minutes:{seconds} Seconds
+      <div className="col-md-9">
+        <h4 className="text-primary">Next Launch:</h4>
+        <span className="text-primary">
+          In {days} Days : {hours} Hours : {minutes} Minutes : {seconds} Seconds
         </span>
+        <hr />
       </div>
     );
   }
@@ -51,12 +51,14 @@ export default class NextLaunch extends Component {
 
   render() {
     return (
-      <Countdown
-        date={this.state.nextLaunch.launch_date_local}
-        renderer={renderer}
-      >
-        <h1>Hello</h1>
-      </Countdown>
+      <>
+        <LaunchItem launch={this.state.nextLaunch}>
+          <Countdown
+            date={this.state.nextLaunch.launch_date_local}
+            renderer={renderer}
+          />
+        </LaunchItem>
+      </>
     );
   }
 }
