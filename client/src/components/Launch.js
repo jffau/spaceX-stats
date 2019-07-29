@@ -17,6 +17,11 @@ const LAUNCH_QUERY = gql`
         rocket_name
         rocket_type
       }
+      links {
+        article_link
+        video_link
+        flickr_images
+      }
     }
   }
 `;
@@ -36,7 +41,8 @@ export class Launch extends Component {
               flight_number,
               launch_year,
               launch_success,
-              rocket: { rocket_id, rocket_name, rocket_type }
+              rocket: { rocket_id, rocket_name, rocket_type },
+              links: { article_link, video_link, flickr_images }
             } = data.launch;
             return (
               <div>
