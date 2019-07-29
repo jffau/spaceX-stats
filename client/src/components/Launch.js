@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-
+import Slider from 'react-slick';
+import styled from 'styled-components';
 const LAUNCH_QUERY = gql`
   query LaunchQuery($flight_number: Int!) {
     launch(flight_number: $flight_number) {
@@ -28,6 +29,13 @@ const LAUNCH_QUERY = gql`
 
 export class Launch extends Component {
   render() {
+    const sliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
     let { flight_number } = this.props.match.params;
     flight_number = parseInt(flight_number);
     return (
@@ -72,6 +80,18 @@ export class Launch extends Component {
                       {launch_success === null ? 'Unknown' : null}
                     </span>
                   </li>
+                  <li className="list-group-item">
+                    Images:
+                    {flickr_images.length > 0 ? (
+                      <Slider {...sliderSettings} className="my-3">
+                        {flickr_images.map(image => (
+                          <Container imageLink={image} />
+                        ))}
+                      </Slider>
+                    ) : (
+                      <span> No Images available at this time</span>
+                    )}
+                  </li>
                 </ul>
 
                 <h4 className="my-3">Rocket Details</h4>
@@ -96,5 +116,13 @@ export class Launch extends Component {
     );
   }
 }
+
+const Container = styled.div`
+  background-image: url('${props => props.imageLink}');
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  height: 60vh;
+`;
 
 export default Launch;
