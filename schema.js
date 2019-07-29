@@ -37,7 +37,7 @@ const LinksType = new GraphQLObjectType({
   name: 'Links',
   fields: () => ({
     article_link: { type: GraphQLString },
-    video_link: { type: GraphQLString },
+    youtube_id: { type: GraphQLString },
     flickr_images: { type: GraphQLList(GraphQLString) }
   })
 });

@@ -20,7 +20,7 @@ const LAUNCH_QUERY = gql`
       }
       links {
         article_link
-        video_link
+        youtube_id
         flickr_images
       }
     }
@@ -50,7 +50,7 @@ export class Launch extends Component {
               launch_year,
               launch_success,
               rocket: { rocket_id, rocket_name, rocket_type },
-              links: { article_link, video_link, flickr_images }
+              links: { article_link, youtube_id, flickr_images }
             } = data.launch;
             return (
               <div>
@@ -80,6 +80,19 @@ export class Launch extends Component {
                       {launch_success === null ? 'Unknown' : null}
                     </span>
                   </li>
+                </ul>
+                <h4 className="my-3">Rocket Details</h4>
+                <ul className="list-group">
+                  <li className="list-group-item">RocketID: {rocket_id}</li>
+                  <li className="list-group-item">
+                    Rocket Name: {rocket_name}
+                  </li>
+                  <li className="list-group-item">
+                    Rocket Type: {rocket_type}
+                  </li>
+                </ul>
+                <h4 className="my-3">Media </h4>
+                <ul className="list-group">
                   <li className="list-group-item">
                     Images:
                     {flickr_images.length > 0 ? (
@@ -92,16 +105,40 @@ export class Launch extends Component {
                       <span> No Images available at this time</span>
                     )}
                   </li>
-                </ul>
-
-                <h4 className="my-3">Rocket Details</h4>
-                <ul className="list-group">
-                  <li className="list-group-item">RocketID: {rocket_id}</li>
                   <li className="list-group-item">
-                    Rocket Name: {rocket_name}
+                    Video:
+                    {youtube_id ? (
+                      <div className="text-center">
+                        <br />
+                        <iframe
+                          title="video"
+                          className="my-3 "
+                          width="100%"
+                          height="450px"
+                          src={`https://www.youtube.com/embed/${youtube_id}`}
+                          frameborder="0"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        />
+                      </div>
+                    ) : (
+                      <span>No Video available at this time</span>
+                    )}
                   </li>
                   <li className="list-group-item">
-                    Rocket Type: {rocket_type}
+                    Article :{' '}
+                    {article_link ? (
+                      <a
+                        href={`${article_link}`}
+                        className="btn btn-secondary mx-5"
+                      >
+                        Read More
+                      </a>
+                    ) : (
+                      <span>
+                        Sorry, there's no article available at this time
+                      </span>
+                    )}
                   </li>
                 </ul>
               </div>
