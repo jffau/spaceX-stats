@@ -6,15 +6,20 @@ const Context = React.createContext();
 class Provider extends Component {
   state = {
     launches: [],
+    rocketNames: [],
+    launchYears: [],
     filteredLaunches: [],
     loading: true,
-    rocketNames: [],
     // defaults for filter:
     show: 'all',
     success: 'all',
-    images: false,
-    videos: false
+    rocketName: 'all',
+    launchedYear: 'all',
+    upcomingOnly: false,
+    hasImages: false,
+    hasVideos: false
   };
+
   getLaunches = () => {
     client
       .query({
@@ -37,18 +42,25 @@ class Provider extends Component {
       .then(response => {
         //   getting unique rocket names
         let rocketNames = [];
-
         response.data.launches.map(launch => {
           rocketNames.push(launch.rocket.rocket_name);
         });
+        const uniqueRockets = new Set(rocketNames);
+        rocketNames = [...uniqueRockets];
 
-        const uniqueSet = new Set(rocketNames);
-        rocketNames = [...uniqueSet];
-        console.log(rocketNames);
+        let launchYears = [];
+        response.data.launches.map(launch => {
+          launchYears.push(launch.launch_year);
+        });
+        const uniqueYears = new Set(launchYears);
+        launchYears = [...uniqueYears];
+
+        console.log(launchYears);
         this.setState({
           launches: response.data.launches,
           loading: false,
-          rocketNames: rocketNames
+          rocketNames: rocketNames,
+          launchYears: launchYears
         });
       })
       .catch(error => console.log(error));
