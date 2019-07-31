@@ -35,4 +35,5 @@ function App() {
   );
 }
 
+export { client };
 export default App;
