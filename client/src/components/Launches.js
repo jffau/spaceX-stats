@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
+import { Context } from '../context';
+
 import MissionKey from './MissionKey';
 import LaunchItem from './LaunchItem';
 import NextLaunch from './NextLaunch';
@@ -17,7 +19,10 @@ const LAUNCHES_QUERY = gql`
 `;
 
 export class Launches extends Component {
+  static contextType = Context;
   render() {
+    let { launches, loading } = this.context;
+    console.log(this.context, launches);
     return (
       <>
         <Query query={LAUNCHES_QUERY}>
@@ -28,6 +33,7 @@ export class Launches extends Component {
             if (error) {
               console.log(error);
             }
+
             return (
               <>
                 <NextLaunch launches={data.launches} />
