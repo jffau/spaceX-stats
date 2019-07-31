@@ -57,6 +57,7 @@ class Provider extends Component {
         console.log(launchYears);
         this.setState({
           launches: response.data.launches,
+          filteredLaunches: response.data.launches,
           loading: false,
           rocketNames: rocketNames,
           launchYears: launchYears
@@ -80,7 +81,43 @@ class Provider extends Component {
     );
   };
 
-  filterLaunches = () => {};
+  filterLaunches = () => {
+    let {
+      launches,
+      rocketNames,
+      launchYears,
+      filteredLaunches,
+      success,
+      rocketName,
+      launchedYear,
+      upcomingOnly,
+      hasImages,
+      hasVideos
+    } = this.state;
+
+    let tempLaunches = [...launches];
+
+    // filter by success
+    if (success !== 'all') {
+      if (success === 'success') {
+        tempLaunches = tempLaunches.filter(
+          launch => launch.launch_success === true
+        );
+      }
+      if (success === 'fail') {
+        tempLaunches = tempLaunches.filter(
+          launch => launch.launch_success === false
+        );
+      }
+      if (success === 'unknown') {
+        tempLaunches = tempLaunches.filter(
+          launch => launch.launch_success === null
+        );
+      }
+    }
+
+    this.setState({ filteredLaunches: tempLaunches });
+  };
 
   componentDidMount() {
     this.getLaunches();
@@ -90,7 +127,8 @@ class Provider extends Component {
     return (
       <Context.Provider
         value={{
-          ...this.state
+          ...this.state,
+          handleChange: this.handleChange
         }}
       >
         {this.props.children}
