@@ -11,7 +11,6 @@ class Provider extends Component {
     filteredLaunches: [],
     loading: true,
     // defaults for filter:
-    show: 'all',
     success: 'all',
     rocketName: 'all',
     launchedYear: 'all',
@@ -64,6 +63,21 @@ class Provider extends Component {
         });
       })
       .catch(error => console.log(error));
+  };
+
+  handleChange = e => {
+    const target = e.target;
+    const type = target.type;
+    const value = type === 'checkbox' ? target.checked : target.value;
+    const name = e.target.name;
+    console.log(`type: ${type} val: ${value} name: ${name}`);
+
+    this.setState(
+      {
+        [name]: value
+      },
+      this.filterLaunches
+    );
   };
 
   filterLaunches = () => {};
