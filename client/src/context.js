@@ -116,6 +116,10 @@ class Provider extends Component {
       }
     }
 
+    //filter by upcomingOnly
+    if (upcomingOnly === true) {
+      tempLaunches = tempLaunches.filter(launch => launch.upcoming === true);
+    }
     this.setState({ filteredLaunches: tempLaunches });
   };
 

@@ -16,6 +16,7 @@ const LaunchesFilter = () => {
     <div className="filter-container">
       <form>
         <div className="form-group">
+          {/* Success */}
           <label htmlFor="success">Launch Success: </label>
           <select
             name="success"
@@ -29,6 +30,22 @@ const LaunchesFilter = () => {
             <option value={'fail'}>Fail</option>
             <option value={'unknown'}>Unknown</option>
           </select>
+          {/* End Success */}
+          {/* Upcoming: */}
+
+          <div className="custom-control custom-switch my-3">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customSwitch1"
+              name="upcomingOnly"
+              checked={upcomingOnly}
+              onChange={handleChange}
+            />
+            <label className="custom-control-label" htmlFor="customSwitch1">
+              Upcoming Launches Only
+            </label>
+          </div>
         </div>
       </form>
     </div>
