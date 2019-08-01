@@ -2,7 +2,7 @@ import React from 'react';
 
 const MissionKey = () => {
   return (
-    <div className="my-3">
+    <div className="my-3 mx-3">
       <h5 className="my-3">Mission Success Key:</h5>
       <p>
         <span className="px-3 mr-2 bg-success" /> ={' '}

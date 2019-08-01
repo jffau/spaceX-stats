@@ -3,3 +3,8 @@
 link {
   text-decoration: none;
 }
+
+.filter-form {
+  width: 80vw;
+  margin: 0 auto;
+}

@@ -17,7 +17,13 @@ export class Launches extends Component {
         <NextLaunch launches={launches} />
         <h1> Launch Stats </h1>
         <LaunchesFilter />
-        <MissionKey />
+        <div className="row">
+          <MissionKey className="col-md-6 mx-5" />
+          <h5 className="my-5 text-right col-md-6">
+            {' '}
+            {filteredLaunches.length} Launches
+          </h5>
+        </div>
         {filteredLaunches.map(launch => (
           <LaunchItem key={launch.flight_number} launch={launch} />
         ))}

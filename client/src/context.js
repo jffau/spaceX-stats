@@ -42,14 +42,14 @@ class Provider extends Component {
         //   getting unique rocket names
         let rocketNames = [];
         response.data.launches.map(launch => {
-          rocketNames.push(launch.rocket.rocket_name);
+          return rocketNames.push(launch.rocket.rocket_name);
         });
         const uniqueRockets = new Set(rocketNames);
         rocketNames = [...uniqueRockets];
 
         let launchYears = [];
         response.data.launches.map(launch => {
-          launchYears.push(launch.launch_year);
+          return launchYears.push(launch.launch_year);
         });
         const uniqueYears = new Set(launchYears);
         launchYears = [...uniqueYears];
