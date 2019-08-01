@@ -34,6 +34,10 @@ class Provider extends Component {
               rocket {
                 rocket_name
               }
+              links {
+                youtube_id
+                flickr_images
+              }
             }
           }
         `
@@ -41,20 +45,20 @@ class Provider extends Component {
       .then(response => {
         //   getting unique rocket names
         let rocketNames = [];
-        response.data.launches.map(launch => {
+        const { launches } = response.data;
+        launches.map(launch => {
           return rocketNames.push(launch.rocket.rocket_name);
         });
         const uniqueRockets = new Set(rocketNames);
         rocketNames = [...uniqueRockets];
 
         let launchYears = [];
-        response.data.launches.map(launch => {
+        launches.map(launch => {
           return launchYears.push(launch.launch_year);
         });
         const uniqueYears = new Set(launchYears);
         launchYears = [...uniqueYears];
 
-        console.log(launchYears);
         this.setState({
           launches: response.data.launches,
           filteredLaunches: response.data.launches,
@@ -120,6 +124,18 @@ class Provider extends Component {
     if (upcomingOnly === true) {
       tempLaunches = tempLaunches.filter(launch => launch.upcoming === true);
     }
+
+    tempLaunches = hasImages
+      ? (tempLaunches = tempLaunches.filter(
+          launch => launch.links.flickr_images.length > 0
+        ))
+      : tempLaunches;
+
+    // filter by videosOnly
+    tempLaunches = hasVideos
+      ? (tempLaunches = tempLaunches.filter(launch => launch.links.youtube_id))
+      : tempLaunches;
+
     this.setState({ filteredLaunches: tempLaunches });
   };
 

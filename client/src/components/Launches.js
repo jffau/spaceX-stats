@@ -11,7 +11,16 @@ export class Launches extends Component {
   render() {
     let { launches, loading, filteredLaunches } = this.context;
     return loading ? (
-      <h1>Loading ...</h1>
+      <div className="mt-5">
+        <h1 className="text-center">
+          {' '}
+          Getting{' '}
+          <span role="img" aria-label="rocket">
+            🚀
+          </span>{' '}
+          stats ...
+        </h1>
+      </div>
     ) : (
       <div>
         <NextLaunch launches={launches} />
@@ -19,14 +28,15 @@ export class Launches extends Component {
         <LaunchesFilter />
         <div className="row">
           <MissionKey className="col-md-6 mx-5" />
-          <h5 className="my-5 text-right col-md-6">
-            {' '}
-            {filteredLaunches.length} Launches
-          </h5>
         </div>
-        {filteredLaunches.map(launch => (
-          <LaunchItem key={launch.flight_number} launch={launch} />
-        ))}
+
+        {filteredLaunches.length === 0 ? (
+          <h5>Sorry, no launches were found with your search criteria...</h5>
+        ) : (
+          filteredLaunches.map(launch => (
+            <LaunchItem key={launch.flight_number} launch={launch} />
+          ))
+        )}
       </div>
     );
   }

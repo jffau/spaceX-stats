@@ -51,14 +51,14 @@ export default class NextLaunch extends Component {
 
   render() {
     return (
-      <>
+      <div className="mt-5">
         <LaunchItem launch={this.state.nextLaunch}>
           <Countdown
             date={this.state.nextLaunch.launch_date_local}
             renderer={renderer}
           />
         </LaunchItem>
-      </>
+      </div>
     );
   }
 }

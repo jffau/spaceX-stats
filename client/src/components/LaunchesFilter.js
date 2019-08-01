@@ -10,7 +10,8 @@ const LaunchesFilter = () => {
     upcomingOnly,
     hasImages,
     hasVideos,
-    handleChange
+    handleChange,
+    filteredLaunches
   } = context;
   return (
     <div className="filter-container card card-body my-3">
@@ -59,6 +60,46 @@ const LaunchesFilter = () => {
               </label>
             </div>
             {/* End Upcoming */}
+            {/* hasImages */}
+            <div className="custom-control custom-switch mx-3">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="imagesSwitch"
+                name="hasImages"
+                checked={hasImages}
+                onChange={handleChange}
+              />
+              <label
+                className="custom-control-label text-white "
+                htmlFor="imagesSwitch"
+              >
+                Has Images
+              </label>
+            </div>
+            {/* endImages */}
+            {/* hasVideos */}
+            <div className="custom-control custom-switch mx-3">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="videosSwitch"
+                name="hasVideos"
+                checked={hasVideos}
+                onChange={handleChange}
+              />
+              <label
+                className="custom-control-label text-white "
+                htmlFor="videosSwitch"
+              >
+                Has Video
+              </label>
+            </div>
+            {/* End Videos */}
+            <h5 className=" text-right col-md-4 text-white">
+              {' '}
+              {filteredLaunches.length} Launches
+            </h5>
           </div>
         </div>
       </form>
