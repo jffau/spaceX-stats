@@ -16,6 +16,7 @@ const LaunchesFilter = () => {
   } = context;
   return (
     <div className="filter-container card card-body my-3">
+      <h5 className="text-white">Filter Launches</h5>
       <form className="filter-form">
         <div className="form-group">
           {/* Selects: */}
@@ -63,6 +64,28 @@ const LaunchesFilter = () => {
             </div>
             {/* End RocketName */}
             {/* Launch Year */}
+            <div className="col-md-2 col-sm-10 my-2">
+              <label htmlFor="launchedYear" className="text-white">
+                Launch Year:{' '}
+              </label>
+              <select
+                name="launchedYear"
+                id="launchedYear"
+                value={launchedYear}
+                className="form-control"
+                onChange={handleChange}
+              >
+                <option value={'all'}>All</option>
+                {launchYears.map((name, index) => {
+                  return (
+                    <option value={name} key={index}>
+                      {name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
             {/* End Launch Year */}
           </div>
           {/* End Success */}

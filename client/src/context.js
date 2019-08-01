@@ -125,7 +125,12 @@ class Provider extends Component {
         launch => launch.rocket.rocket_name === rocketName
       );
     }
-
+    // filter by launchYear
+    if (launchedYear !== 'all') {
+      tempLaunches = tempLaunches.filter(
+        launch => launch.launch_year === launchedYear
+      );
+    }
     //filter by upcomingOnly
     if (upcomingOnly === true) {
       tempLaunches = tempLaunches.filter(launch => launch.upcoming === true);
