@@ -6,12 +6,13 @@ const LaunchesFilter = () => {
   const {
     success,
     rocketName,
+    rocketNames,
     launchedYear,
+    launchYears,
     upcomingOnly,
     hasImages,
     hasVideos,
-    handleChange,
-    filteredLaunches
+    handleChange
   } = context;
   return (
     <div className="filter-container card card-body my-3">
@@ -19,7 +20,7 @@ const LaunchesFilter = () => {
         <div className="form-group">
           {/* Selects: */}
           <div className="row">
-            <div className="col-md-3 col-sm-10">
+            <div className="col-md-3 col-sm-10 my-2">
               {/* Success */}
               <label htmlFor="success" className="text-white">
                 Launch Success:{' '}
@@ -37,6 +38,32 @@ const LaunchesFilter = () => {
                 <option value={'unknown'}>Unknown</option>
               </select>
             </div>
+            {/* End Success */}
+            {/* RocketName */}
+            <div className="col-md-3 col-sm-10 my-2">
+              <label htmlFor="rocketName" className="text-white">
+                Rocket Type:{' '}
+              </label>
+              <select
+                name="rocketName"
+                id="rocketName"
+                value={rocketName}
+                className="form-control"
+                onChange={handleChange}
+              >
+                <option value={'all'}>All</option>
+                {rocketNames.map((name, index) => {
+                  return (
+                    <option value={name} key={index}>
+                      {name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            {/* End RocketName */}
+            {/* Launch Year */}
+            {/* End Launch Year */}
           </div>
           {/* End Success */}
           {/* Toggles: */}
@@ -96,10 +123,6 @@ const LaunchesFilter = () => {
               </label>
             </div>
             {/* End Videos */}
-            <h5 className=" text-right col-md-4 text-white">
-              {' '}
-              {filteredLaunches.length} Launches
-            </h5>
           </div>
         </div>
       </form>

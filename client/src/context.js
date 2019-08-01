@@ -119,6 +119,12 @@ class Provider extends Component {
         );
       }
     }
+    // filter by rocketNames
+    if (rocketName !== 'all') {
+      tempLaunches = tempLaunches.filter(
+        launch => launch.rocket.rocket_name === rocketName
+      );
+    }
 
     //filter by upcomingOnly
     if (upcomingOnly === true) {

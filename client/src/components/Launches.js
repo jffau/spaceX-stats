@@ -17,8 +17,8 @@ export class Launches extends Component {
           Getting{' '}
           <span role="img" aria-label="rocket">
             🚀
-          </span>{' '}
-          stats ...
+          </span>
+          info ...
         </h1>
       </div>
     ) : (
@@ -28,6 +28,10 @@ export class Launches extends Component {
         <LaunchesFilter />
         <div className="row">
           <MissionKey className="col-md-6 mx-5" />
+          <h5 className="my-5 text-right col-md-6">
+            {' '}
+            {filteredLaunches.length} Launches
+          </h5>
         </div>
 
         {filteredLaunches.length === 0 ? (
