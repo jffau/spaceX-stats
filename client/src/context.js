@@ -45,17 +45,17 @@ class Provider extends Component {
       .then(response => {
         //   getting unique rocket names
         let rocketNames = [];
+        let launchYears = [];
         const { launches } = response.data;
         launches.map(launch => {
-          return rocketNames.push(launch.rocket.rocket_name);
+          return (
+            rocketNames.push(launch.rocket.rocket_name),
+            launchYears.push(launch.launch_year)
+          );
         });
         const uniqueRockets = new Set(rocketNames);
         rocketNames = [...uniqueRockets];
 
-        let launchYears = [];
-        launches.map(launch => {
-          return launchYears.push(launch.launch_year);
-        });
         const uniqueYears = new Set(launchYears);
         launchYears = [...uniqueYears];
 
@@ -88,9 +88,6 @@ class Provider extends Component {
   filterLaunches = () => {
     let {
       launches,
-      rocketNames,
-      launchYears,
-      filteredLaunches,
       success,
       rocketName,
       launchedYear,
