@@ -8,3 +8,7 @@ link {
   width: 80vw;
   margin: 0 auto;
 }
+
+.form-select {
+  max-width: 350px;
+}

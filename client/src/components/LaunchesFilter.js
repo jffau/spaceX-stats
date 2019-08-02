@@ -21,7 +21,7 @@ const LaunchesFilter = () => {
         <div className="form-group">
           {/* Selects: */}
           <div className="row">
-            <div className="col-md-3 col-sm-10 my-2">
+            <div className="form-select col-sm-10 my-2">
               {/* Success */}
               <label htmlFor="success" className="text-white">
                 Launch Success:{' '}
@@ -41,7 +41,7 @@ const LaunchesFilter = () => {
             </div>
             {/* End Success */}
             {/* RocketName */}
-            <div className="col-md-3 col-sm-10 my-2">
+            <div className="form-select col-sm-10 my-2">
               <label htmlFor="rocketName" className="text-white">
                 Rocket Type:{' '}
               </label>
@@ -64,7 +64,7 @@ const LaunchesFilter = () => {
             </div>
             {/* End RocketName */}
             {/* Launch Year */}
-            <div className="col-md-2 col-sm-10 my-2">
+            <div className="form-select col-sm-10 my-2">
               <label htmlFor="launchedYear" className="text-white">
                 Launch Year:{' '}
               </label>
@@ -106,7 +106,7 @@ const LaunchesFilter = () => {
                 className="custom-control-label text-white "
                 htmlFor="upcomingSwitch"
               >
-                Upcoming Launches Only
+                Upcoming Launches
               </label>
             </div>
             {/* End Upcoming */}

@@ -16,6 +16,7 @@ export class Launches extends Component {
           {' '}
           Getting{' '}
           <span role="img" aria-label="rocket">
+            {' '}
             🚀
           </span>
           info ...
