@@ -15,7 +15,7 @@ const LaunchesFilter = () => {
     handleChange
   } = context;
   return (
-    <div className="filter-container card card-body my-3">
+    <div className="filter-container card card-body my-5">
       <h5 className="text-white">Filter Launches</h5>
       <form className="filter-form">
         <div className="form-group">

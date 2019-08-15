@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { JellyfishSpinner } from 'react-spinners-kit';
 import { Context } from '../context';
 
 import NextLaunch from './NextLaunch';
@@ -11,21 +12,29 @@ export class Launches extends Component {
   render() {
     let { launches, loading, filteredLaunches } = this.context;
     return loading ? (
-      <div className="mt-5">
-        <h1 className="text-center">
+      <div
+        style={{
+          textAlign: 'center',
+          margin: '40% auto',
+          display: 'flex'
+        }}
+      >
+        <h1 className="text-center" style={{ flex: '2' }}>
           {' '}
           Getting{' '}
           <span role="img" aria-label="rocket">
             {' '}
             🚀
-          </span>
-          info ...
+          </span>{' '}
+          stats
         </h1>
+        <div style={{ flex: '1', marginTop: '-80px' }}>
+          <JellyfishSpinner size={220} color="#FFFFFF" />
+        </div>
       </div>
     ) : (
       <div>
         <NextLaunch launches={launches} />
-        <h1> Launch Stats </h1>
         <LaunchesFilter />
         <div className="row">
           <MissionKey className="col-md-6 mx-5" />

@@ -10,10 +10,10 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   } else {
     return (
       <div className="col-md-9">
-        <h4 className="text-primary">Next Launch:</h4>
-        <span className="text-primary">
+        <h4 className="text-white mb-4">Next Launch:</h4>
+        <h5 className="text-primary">
           In {days} Days : {hours} Hours : {minutes} Minutes : {seconds} Seconds
-        </span>
+        </h5>
         <hr />
       </div>
     );
